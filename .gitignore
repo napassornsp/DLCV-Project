@@ -1,1 +1,5 @@
-DLCV_cleanup.zip
+env/
+env_w2v/
+__pycache__/
+.ipynb_checkpoints/
+Model/XAI Evaluation/svm_rbf.joblib
