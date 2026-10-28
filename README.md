@@ -2,9 +2,6 @@
 
 This project applies explainable data science (XDS) techniques to fake news detection. The goal is to understand *why* a model classifies an article as fake or real, rather than treating it as a black box, and to check whether those reasons hold up.
 
-> [!IMPORTANT]
-> **Still to do: the human study (grading criterion 5, 15 marks).** The forward-simulation study is designed but has not been run, so the report marks it as TO DO (highlighted in Section 5). Steps: [Human Study (To Do)](#human-study-to-do).
-
 ## Who Reads the Explanation and What They Decide
 
 The explanation is read by a trust-and-safety reviewer at a news-sharing platform. For each article the screen flags as fake, the reviewer decides whether to demote it in the feed at once or to send it to manual fact-checking first. Demoting a real article suppresses a legitimate publisher, with reputational and press-freedom costs; sending every flag to fact-checking is slow and lets fabricated stories circulate in the meantime. The explanation must therefore show which words drove the flag, so that a flag hanging on one or two incidental words goes to a fact-checker rather than being acted on at once.
