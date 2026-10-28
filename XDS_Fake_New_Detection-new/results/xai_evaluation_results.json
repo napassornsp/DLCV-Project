@@ -1,0 +1,294 @@
+{
+  "random_state": 42,
+  "performance": {
+    "Logistic regression (baseline)": {
+      "fake_recall": 0.969,
+      "precision": 0.9872,
+      "accuracy": 0.9803,
+      "roc_auc": 0.9978,
+      "TP": 3381,
+      "FN": 108,
+      "FP": 44,
+      "TN": 4194
+    },
+    "Decision tree (depth 3)": {
+      "fake_recall": 0.9229,
+      "precision": 0.8344,
+      "accuracy": 0.8825,
+      "roc_auc": 0.9361,
+      "TP": 3220,
+      "FN": 269,
+      "FP": 639,
+      "TN": 3599
+    },
+    "SVM, RBF kernel (explained model)": {
+      "fake_recall": 0.9751,
+      "precision": 0.9887,
+      "accuracy": 0.9837,
+      "roc_auc": 0.9984,
+      "TP": 3402,
+      "FN": 87,
+      "FP": 39,
+      "TN": 4199
+    }
+  },
+  "svm_vs_lr": {
+    "discordant_all": [
+      7,
+      33
+    ],
+    "mcnemar_p_all": 4.2277022657799534e-05,
+    "discordant_fake": [
+      3,
+      24
+    ],
+    "mcnemar_p_fake": 4.9233436584472656e-05,
+    "recall_diff": 0.006018916595012969,
+    "recall_diff_ci95": [
+      0.0031527658354829624,
+      0.008885067354542864
+    ]
+  },
+  "svm_complexity": {
+    "kernel": "RBF",
+    "C": 1.0,
+    "gamma (scale)": 1.0142492593388437,
+    "input_dimensions": 5000,
+    "support_vectors": 7866,
+    "support_vector_share_of_train": 0.2545136866627839,
+    "median_nonzero_terms_per_test_article": 129
+  },
+  "near_duplicates": {
+    "n_test_near_dup": 93,
+    "scores": {
+      "LR": {
+        "fake_recall (all)": 0.969,
+        "fake_recall (no near-dups)": 0.969,
+        "accuracy (all)": 0.9803,
+        "accuracy (no near-dups)": 0.9801
+      },
+      "SVM": {
+        "fake_recall (all)": 0.9751,
+        "fake_recall (no near-dups)": 0.9751,
+        "accuracy (all)": 0.9837,
+        "accuracy (no near-dups)": 0.9835
+      }
+    }
+  },
+  "whitebox_lr_lime": {
+    "spearman_rho": {
+      "mean": 0.81,
+      "std": 0.141,
+      "min": 0.458,
+      "median": 0.85
+    },
+    "precision_at_5": {
+      "mean": 0.836,
+      "std": 0.132,
+      "min": 0.6,
+      "median": 0.8
+    },
+    "sign_agreement_top5": {
+      "mean": 0.992,
+      "std": 0.04,
+      "min": 0.8,
+      "median": 1.0
+    }
+  },
+  "whitebox_lr_kernelshap": {
+    "median_max_abs_err": 3.191891195797325e-16,
+    "worst_max_abs_err": 0.2917816166911798,
+    "mean_pearson": 0.9953758304992254,
+    "n_corr": 40,
+    "share_articles_err_below_0.01": 0.92
+  },
+  "whitebox_dt": {
+    "n_with_tree_term": 92,
+    "lime_weight_share_on_tree_terms_mean": 0.8954921030910332,
+    "lime_weight_share_on_tree_terms_median": 0.9942857345672991,
+    "lime_top1_is_tree_term": 0.9782608695652174,
+    "treeshap_max_unused": 0.0,
+    "treeshap_additivity_err": 2.220446049250313e-16
+  },
+  "deletion_svm": {
+    "n_articles": 100,
+    "lime_num_samples": 500,
+    "k_max": 10,
+    "aopc_lime": 0.853153236080158,
+    "aopc_random": 0.04368817273833442,
+    "lime_beats_random_share": 1.0,
+    "flip_lime": [
+      0.03,
+      0.09,
+      0.12,
+      0.14,
+      0.17,
+      0.19,
+      0.22,
+      0.24,
+      0.25,
+      0.31
+    ],
+    "flip_random": [
+      0.0,
+      0.002,
+      0.0,
+      0.002,
+      0.002,
+      0.002,
+      0.002,
+      0.004,
+      0.002,
+      0.006
+    ],
+    "median_abs_decision": 1.40674896804328
+  },
+  "stability_lime_seed": {
+    "500": {
+      "jaccard_top5": 0.78,
+      "same_top1": 0.909
+    },
+    "2000": {
+      "jaccard_top5": 0.872,
+      "same_top1": 0.94
+    }
+  },
+  "stability_lime_seed_min": {
+    "500": {
+      "jaccard_top5": 0.59
+    },
+    "2000": {
+      "jaccard_top5": 0.652
+    }
+  },
+  "stability_kernelshap_seed": {
+    "jaccard_top5_mean": 0.9883333333333333,
+    "jaccard_top5_min": 0.7666666666666667,
+    "max_abs_diff_max": 0.04334428824957026
+  },
+  "stability_perturbation": {
+    "n_kept": 40,
+    "n_total": 40,
+    "median_score_change": 0.002844131790308166,
+    "jaccard_top5": 0.8773809523809524,
+    "same_top1": 0.925,
+    "seed_only_jaccard_2000": 0.8723809523809523
+  },
+  "counterfactuals": {
+    "FP (real, flagged)": {
+      "n": 39.0,
+      "flipped within 20 (any word)": 0.974,
+      "median size (any word)": 1.0,
+      "flipped within 3 (any word)": 0.718,
+      "uses an artefact word": 0.237,
+      "flipped within 20 (editorial only)": 0.974,
+      "median size (editorial only)": 2.0,
+      "flipped within 3 (editorial only)": 0.641
+    },
+    "TP (fake, flagged)": {
+      "n": 40.0,
+      "flipped within 20 (any word)": 0.675,
+      "median size (any word)": 9.0,
+      "flipped within 3 (any word)": 0.05,
+      "uses an artefact word": 0.963,
+      "flipped within 20 (editorial only)": 0.25,
+      "median size (editorial only)": 9.5,
+      "flipped within 3 (editorial only)": 0.025
+    }
+  },
+  "counterfactual_margin_spearman": 0.8224934559755418,
+  "triage_vs_threshold": {
+    "rule_fp": [
+      25,
+      39
+    ],
+    "rule_tp": [
+      1,
+      40
+    ],
+    "threshold": 0.2898479361077031,
+    "threshold_tp": [
+      0,
+      40
+    ],
+    "rule_tp_rate_ci95": [
+      0.0006327449320494191,
+      0.13158585848276572
+    ],
+    "n_tp_all": 3402
+  },
+  "ethics_error_rates": [
+    {
+      "group mention": "religion",
+      "error": "FPR (real flagged as fake)",
+      "rate with mention": 0.0118,
+      "errors / n with": "10 / 848",
+      "rate without": 0.0086,
+      "errors / n without": "29 / 3390"
+    },
+    {
+      "group mention": "religion",
+      "error": "FNR (fake missed)",
+      "rate with mention": 0.0267,
+      "errors / n with": "17 / 636",
+      "rate without": 0.0245,
+      "errors / n without": "70 / 2853"
+    },
+    {
+      "group mention": "race_ethnicity",
+      "error": "FPR (real flagged as fake)",
+      "rate with mention": 0.0364,
+      "errors / n with": "4 / 110",
+      "rate without": 0.0085,
+      "errors / n without": "35 / 4128"
+    },
+    {
+      "group mention": "race_ethnicity",
+      "error": "FNR (fake missed)",
+      "rate with mention": 0.007,
+      "errors / n with": "4 / 573",
+      "rate without": 0.0285,
+      "errors / n without": "83 / 2916"
+    },
+    {
+      "group mention": "immigration",
+      "error": "FPR (real flagged as fake)",
+      "rate with mention": 0.014,
+      "errors / n with": "8 / 573",
+      "rate without": 0.0085,
+      "errors / n without": "31 / 3665"
+    },
+    {
+      "group mention": "immigration",
+      "error": "FNR (fake missed)",
+      "rate with mention": 0.041,
+      "errors / n with": "17 / 415",
+      "rate without": 0.0228,
+      "errors / n without": "70 / 3074"
+    },
+    {
+      "group mention": "any_group",
+      "error": "FPR (real flagged as fake)",
+      "rate with mention": 0.0118,
+      "errors / n with": "14 / 1182",
+      "rate without": 0.0082,
+      "errors / n without": "25 / 3056"
+    },
+    {
+      "group mention": "any_group",
+      "error": "FNR (fake missed)",
+      "rate with mention": 0.0256,
+      "errors / n with": "31 / 1211",
+      "rate without": 0.0246,
+      "errors / n without": "56 / 2278"
+    }
+  ],
+  "ethics_phi_max": {
+    "pair": [
+      "featured",
+      "race_ethnicity"
+    ],
+    "phi": 0.2568614517120544
+  },
+  "human_eval": "pending: no participant data"
+}
