@@ -32,6 +32,8 @@ Format follows Mitchell et al. (2019), "Model Cards for Model Reporting". All nu
 
 SVM vs baseline: +0.6 recall points (bootstrap 95% CI 0.3 to 0.9) and 5 fewer false alarms; on fake articles the SVM wins 24 of 27 disagreements (exact McNemar p = 4.9 × 10⁻⁵, one split).
 
+A glass-box alternative exists: an EBM on 14 stylistic features plus the top-30 terms (`Model/Unique Models/EBM_CatBoost.ipynb`) reaches Fake recall 0.986 (48 missed fakes, 19 false alarms) on the same test set and can be read in full.
+
 Explanation quality (LIME, SVM): deletion AOPC 0.85 vs 0.04 for random words; top-5 seed agreement (Jaccard) 0.78 at 500 samples, 0.87 at 2,000; on average no more change under 5% token deletion than between seeds. Human forward-simulation study: **not yet run**.
 
 ## Known limitations and risks

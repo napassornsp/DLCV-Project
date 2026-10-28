@@ -3,12 +3,15 @@ Shared preprocessing pipeline for Fake News Detection project.
 All model notebooks (baseline + Tier 2) must import from here to ensure
 identical preprocessing, TF-IDF settings, and train/test split across models.
 
-Row-level cleaning (duplicates, empty texts, Reuters dateline) is done once in
-clean_dataset.ipynb. This file only processes the text of the cleaned dataset.
+load_raw_dataset() reads and labels the two raw ISOT files; it is used by
+dataset_eda.ipynb and clean_dataset.ipynb. Row-level cleaning (duplicates, empty
+texts, Reuters dateline) is done once in clean_dataset.ipynb. Everything else in
+this file processes the text of the cleaned dataset.
 """
 
 import re
 import unicodedata
+import pandas as pd
 from sklearn.feature_extraction.text import TfidfVectorizer
 from sklearn.model_selection import train_test_split
 import nltk
@@ -26,7 +29,7 @@ def _ensure_nltk_resources():
 
     The stopword list is loaded when this module is imported, so the corpora must
     exist before any notebook runs `from preprocessing import ...`. Without this
-    check, a fresh clone fails in combine_dataset.ipynb with a LookupError.
+    check, a fresh clone fails in the first notebook with a LookupError.
     """
     for resource in ("stopwords", "wordnet"):
         found = False
@@ -45,6 +48,23 @@ _ensure_nltk_resources()
 
 stop_words = set(stopwords.words("english"))
 lemmatizer = WordNetLemmatizer()
+
+
+def load_raw_dataset(data_dir="Dataset"):
+    """Read the two raw ISOT files, label them and combine them into one table.
+
+    Real articles (Reuters) come from True.csv and fake articles from Fake.csv.
+    `label` keeps the readable name and `label_encoded` is the model target
+    (fake = 1, real = 0). The rows are shuffled with RANDOM_STATE so that
+    df.head() shows both classes. No cleaning happens here.
+    """
+    true_df = pd.read_csv(f"{data_dir}/True.csv")
+    fake_df = pd.read_csv(f"{data_dir}/Fake.csv")
+    true_df["label"] = "real"
+    fake_df["label"] = "fake"
+    df = pd.concat([true_df, fake_df], ignore_index=True)
+    df["label_encoded"] = df["label"].map({"fake": 1, "real": 0})
+    return df.sample(frac=1, random_state=RANDOM_STATE).reset_index(drop=True)
 
 
 def preprocess_text(text):
